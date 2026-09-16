@@ -1,0 +1,50 @@
+Script started on 2026-09-15 06:20:37+00:00 [TERM="linux" TTY="/dev/pts/0" COLUMNS="160" LINES="50"]
+root@unbuntu:~# grep -A 15 "<active-response>" ./ossec.conf
+  <active-response>
+    active-response options here
+  </active-response>
+  <active-response>
+    <disabled>no</disabled>
+    <command>host-deny</command>
+    <location>local</location>
+    <rules_id>5712,5720</rules_id>
+    <timeout>600</timeout>
+  </active-response>
+
+  <!-- Log analysis -->
+  <localfile>
+    <log_format>command</log_format>
+    <command>df -P</command>
+    <frequency>360</frequency>
+  </localfile>
+
+  <localfile>
+--
+ <active-response>
+  <command>host-deny</command>
+  <location>local</location>
+  <rules_id>5712,5720</rules_id
+  <timeout>600</timeout>
+  </active-response>
+</ossec_config
+
+<ossec_config>
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/ossec/logs/active-responses.log</location>
+  </localfile>
+
+ <active-response>
+  <command>host-deny</command>
+  <location>local</location>
+  <rules_id>5712,5720</rules_id
+  <timeout>600</timeout>
+  </active-response>
+</ossec_config
+root@unbuntu:~# docker exec -it root-wazuh-1 tail -n 5 /var/ossec/logs/alerts/alerts.json
+{"timestamp":"2026-09-15T01:29:51.346+0000","rule":{"level":3,"description":"Wazuh server started.","id":"502","firedtimes":1,"mail":false,"groups":["ossec"],"pci_dss":["10.6.1"],"gpg13":["10.1"],"gdpr":["IV_35.7.d"],"hipaa":["164.312.b"],"nist_800_53":["AU.6"],"tsc":["CC7.2","CC7.3"]},"agent":{"id":"000","name":"wazuh-manager"},"manager":{"name":"wazuh-manager"},"id":"1789435791.0","full_log":"ossec: Manager started.","decoder":{"name":"ossec"},"location":"wazuh-monitord"}
+{"timestamp":"2026-09-15T02:02:17.250+0000","rule":{"level":3,"description":"Wazuh server started.","id":"502","firedtimes":1,"mail":false,"groups":["ossec"],"pci_dss":["10.6.1"],"gpg13":["10.1"],"gdpr":["IV_35.7.d"],"hipaa":["164.312.b"],"nist_800_53":["AU.6"],"tsc":["CC7.2","CC7.3"]},"agent":{"id":"000","name":"wazuh-manager"},"manager":{"name":"wazuh-manager"},"id":"1789437737.249","full_log":"ossec: Manager started.","decoder":{"name":"ossec"},"location":"wazuh-monitord"}
+root@unbuntu:~# exit
+exit
+
+Script done on 2026-09-15 06:23:47+00:00 [COMMAND_EXIT_CODE="0"]
